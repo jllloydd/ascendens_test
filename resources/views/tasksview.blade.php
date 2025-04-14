@@ -5,35 +5,43 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-6 sm:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Create Task Button -->
             <div class="mb-4 flex justify-end">
                 <button onclick="openModal()"
-                    class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded">
+                    class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded text-sm sm:text-base">
                     Create New Task
                 </button>
             </div>
 
-            <!-- Tasks List -->
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 grid grid-cols-1 md:grid-cols-2 gap-4">
-                    @foreach ($tasks as $task)
-                        <div class="bg-white p-4 shadow rounded">
-                            <h2 class="text-xl font-semibold">{{ $task->title }}</h2>
-                            <p class="text-gray-600">{{ $task->description }}</p>
-                            <div class="mt-2">
-                                <button onclick="openEditModal({{ $task }})" class="text-white ml-2 rounded-lg bg-blue-600 px-2 py-2">Edit</button>
-                                <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-white ml-2 rounded-lg bg-red-600 px-2 py-2">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    @endforeach
+            <!-- Tasks Grid -->
+            @if($tasks->isEmpty())
+                <div class="text-center text-gray-600 py-6 text-4xl font-bold">
+                    No tasks found. Create one to get started!
                 </div>
-            </div>
+            @else
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-4 sm:p-6 text-gray-900 grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4">
+                        @foreach ($tasks as $task)
+                            <div class="bg-white p-4 shadow rounded">
+                                <h2 class="text-lg sm:text-xl font-semibold">{{ $task->title }}</h2>
+                                <p class="text-gray-600 text-sm sm:text-base">{{ $task->description }}</p>
+                                <div class="mt-2 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                                    <button onclick="openEditModal({{ $task }})" class="text-white rounded-lg bg-blue-600 px-3 py-2 text-sm sm:text-base w-full sm:w-auto">Edit</button>
+                                    <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="inline w-full sm:w-auto">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this task?')" class="text-white rounded-lg bg-red-600 px-3 py-2 text-sm sm:text-base w-full sm:w-auto">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 

@@ -11,8 +11,15 @@ class Task extends Model
 
     protected $fillable = [
         'title',
-        'description'
+        'description',
+        'user_id'
     ];
+
+    //Defining relationship of task to user model
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function up()
 {

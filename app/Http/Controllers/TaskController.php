@@ -9,7 +9,8 @@ class TaskController extends Controller
     // Function to display all tasks
     public function index()
     {
-        $tasks = Task::latest()->get();
+        // Fetch tasks only for the authenticated user
+        $tasks = auth()->user()->tasks()->latest()->get();
         return view('tasksview', compact('tasks'));
     }
 
@@ -21,7 +22,12 @@ class TaskController extends Controller
             'description' => 'nullable',
         ]);
 
-        Task::create($request->all());
+        // Creating the task and associating it with the current authenticated user
+        auth()->user()->tasks()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+        ]);
+
         return redirect()->route('tasksview')->with('success', 'Task created successfully.');
     }
 
