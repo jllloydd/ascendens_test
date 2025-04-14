@@ -6,11 +6,6 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     // Function to display all tasks
     public function index()
     {
