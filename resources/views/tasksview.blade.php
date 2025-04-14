@@ -10,7 +10,7 @@
             <!-- Create Task Button -->
             <div class="mb-4 flex justify-end">
                 <button onclick="openModal()"
-                    class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded text-sm sm:text-base">
+                    class="bg-white hover:bg-gray-200 text-black font-bold py-2 px-4 rounded text-sm sm:text-base">
                     Create New Task
                 </button>
             </div>
@@ -21,12 +21,12 @@
                     No tasks found. Create one to get started!
                 </div>
             @else
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-4 sm:p-6 text-gray-900 grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4">
                         @foreach ($tasks as $task)
-                            <div class="bg-white p-4 shadow rounded">
-                                <h2 class="text-lg sm:text-xl font-semibold">{{ $task->title }}</h2>
-                                <p class="text-gray-600 text-sm sm:text-base">{{ $task->description }}</p>
+                            <div class="bg-gray-800 p-4 border border-white rounded-lg">
+                                <h2 class="text-lg text-gray-300 sm:text-xl font-semibold">{{ $task->title }}</h2>
+                                <p class="text-gray-300 text-sm sm:text-base">{{ $task->description }}</p>
                                 <div class="mt-2 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
                                     <button onclick="openEditModal({{ $task }})" class="text-white rounded-lg bg-blue-600 px-3 py-2 text-sm sm:text-base w-full sm:w-auto">Edit</button>
                                     <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="inline w-full sm:w-auto">

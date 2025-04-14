@@ -30,13 +30,7 @@ class TaskController extends Controller
 
         return redirect()->route('tasksview')->with('success', 'Task created successfully.');
     }
-
-    // Displaying the details of a singular task
-    public function show(Task $task)
-    {
-        return view('tasks.show', compact('task'));
-    }
-
+    
     // Showing the form for editing a task
     public function edit(Task $task)
     {
