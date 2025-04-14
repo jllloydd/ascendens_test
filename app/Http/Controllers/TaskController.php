@@ -22,7 +22,7 @@ class TaskController extends Controller
         ]);
 
         Task::create($request->all());
-        return redirect()->route('dashboard')->with('success', 'Task created successfully.');
+        return redirect()->route('tasksview')->with('success', 'Task created successfully.');
     }
 
     // Displaying the details of a singular task
@@ -46,13 +46,13 @@ class TaskController extends Controller
         ]);
 
         $task->update($request->all());
-        return redirect()->route('dashboard')->with('success', 'Task updated successfully.');
+        return redirect()->route('tasksview')->with('success', 'Task updated successfully.');
     }
 
     // Deleting a task
     public function destroy(Task $task)
     {
         $task->delete();
-        return redirect()->route('dashboard')->with('success', 'Task deleted successfully.');
+        return redirect()->route('tasksview')->with('success', 'Task deleted successfully.');
     }
 }
