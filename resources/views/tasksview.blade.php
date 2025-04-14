@@ -17,7 +17,7 @@
 
             <!-- Tasks Grid -->
             @if($tasks->isEmpty())
-                <div class="text-center text-gray-600 py-6 text-4xl font-bold">
+                <div class="text-center text-white py-6 text-4xl font-bold">
                     No tasks found. Create one to get started!
                 </div>
             @else

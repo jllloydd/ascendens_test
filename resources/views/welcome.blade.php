@@ -65,9 +65,9 @@
                                     </a>
                                 @endif
 
-                                <x-primary-button class="ms-3 bg-white text-black">
+                                <button class="ms-3 bg-white hover:bg-gray-400 text-black px-2 py-1 rounded-lg">
                                     {{ __('Log in') }}
-                                </x-primary-button>
+                                <button>
                             </div>
                         </form>
 
