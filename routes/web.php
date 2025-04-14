@@ -8,15 +8,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Main tasks view
-Route::get('/tasksview', function () {
-    return view('tasksview');
-})->middleware(['auth', 'verified'])->name('tasksview');
-
-// Routes that for authorized users
+// Routes that are for authorized users
 Route::middleware('auth')->group(function () {
 
     //Task CRUD routes
+    Route::get('tasksview', [TaskController::class, 'index'])->name('tasksview');
     Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
     Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
