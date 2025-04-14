@@ -13,12 +13,6 @@ class TaskController extends Controller
         return view('tasksview', compact('tasks'));
     }
 
-    // Displaying the form for creating a task
-    public function create()
-    {
-        return view('tasks.create');
-    }
-
     // Storing the task created in the form
     public function store(Request $request)
     {
